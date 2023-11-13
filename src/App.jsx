@@ -1,32 +1,16 @@
 import { useEffect } from "react";
 import { Light } from "./Light";
 import { useState } from "react";
-import { Button } from "./Button";
+
 
 export default function App() {
   const [activeLight, setActiveLight] = useState("red");
+  const [isActive, setIsActive] = useState(false)
 
-  // useEffect(() => {
-    
-  //   const interval = setInterval(() => {
-  //     switch (activeLight) {
-  //       case "red":
-  //         setActiveLight("yellow");
-  //         break;
-  //       case "yellow":
-  //         setActiveLight("green");
-  //         break;
-  //       case "green":
-  //         setActiveLight("red");
-  //     }
-  //   }, 3000);
-
-  //   return () => clearInterval(interval);
-  // });
-
-const startButton = () => {
-  setInterval(() => {
-     switch (activeLight) {
+   useEffect(() => {
+    if (!isActive) return
+    const interval = setInterval(() => {
+      switch (activeLight) {
         case "red":
           setActiveLight("yellow");
           break;
@@ -34,15 +18,13 @@ const startButton = () => {
           setActiveLight("green");
           break;
         case "green":
-          setActiveLight("red");
-      }
-    }, 3000);
+           setActiveLight("red");
+       }
+     }, 3000);
 
-   // return () => clearInterval(interval);
-  //});
- // })
-}
-
+     return () => clearInterval(interval);
+   });
+  
 
   return (
     <>
@@ -54,9 +36,8 @@ const startButton = () => {
         <Light color="green" opacity={activeLight === "green" ? 1 : 0.4}></Light>
       </div>
       <h1 style={{ margin: "auto", width: "fit-content" }}>{activeLight}</h1>
-   <Button >
-
-   </Button>
+   <button onClick={()=> setIsActive(true)}>Start</button>
+   <button onClick={()=> setIsActive(false)}>Stop</button>
     </>
   );
 }
