@@ -1,0 +1,23 @@
+body {
+    margin: auto;
+
+}
+.container {
+    display: flex;
+   
+    justify-self: center;
+    
+}
+.start-button {
+    border-radius: 30%;
+    width: 60px;
+    height: 30px;
+    margin: auto;
+} 
+
+.stop-button {
+    border-radius: 30%;
+    width: 60px;
+    height: 30px;
+    margin: auto;
+}
